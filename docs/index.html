@@ -7,7 +7,7 @@
 <html>
 	<head>
 		<title>ConductorViewer</title>
-		<link rel="shortcut icon" type="image/png" href="images/conductor_icon.png"
+		<link rel="shortcut icon" type="image/png" href="images/conductor_icon.png">
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -32,9 +32,9 @@
 						<nav>
 							<ul>
 								<li><a href="#intro">About</a></li>
-								<li><a href="#work">Motion Model</a></li>
-								<li><a href="#about">Signal Processing</a></li>
-								<li><a href="#contact">Results</a></li>
+								<li><a href="#motion">Motion Model</a></li>
+								<li><a href="#algorithms">Algorithms</a></li>
+								<li><a href="#results">Results</a></li>
 								<li><a href="#elements">Elements</a></li> <!-- Comment out when completed -->
 							</ul>
 						</nav>
@@ -42,33 +42,54 @@
 
 				<!-- Main -->
 					<div id="main">
-
 						<!-- Intro -->
 							<article id="intro">
 								<h2 class="major">About</h2>
+								<h3 class="major">What we Do</h3>
+								<p>As the heart of an orchestra and the glue that keeps it together, being a conductor is a crucial, and often daunting, task. 
+									And just like the musicians they are leading, conductors need to practice to conduct their orchestra effectively.
+									Besides the possibility of using a metronome to guide their beats, there is no way for conductors to gauge how well they are conducting,
+									and worse, if they are doing it correctly.
+								</p>
+								<p>
+									What we aim to achieve with ConductorViewer is to remove the doubt conductors have when they conduct, and allow them to receive feedback on how well they are doing,
+									and based on what information our product gives them, they can learn and improve themselves to fix their mistakes efficiently and perform flawlessly on stage.
+								</p>
+								<h3 class="major">How it Works</h3>
 								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
-								<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet egestas mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id euismod egestas. By the way, check out my <a href="#work">awesome work</a>.</p>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<p>ConductorViewer uses a single sensing device, such as a smartphone, attached to a person's wrist.
+									The accelerometer on the sensing device reads the movement of the conductor and give feedback on two parameters:
+								</p>
+								<ul>
+									<li>Tempo Readings</li>
+									<li>Consistiency Score for the BPM (Beats Per Minute).</li>
+								</ul>
+								<p>Using these parameters based on the sensor data, the device transmits feedback to the conductor so they know what they are doing,
+									and improving themselves to help lead the musicians playing in the orchestra.</p>
 							</article>
 
-						<!-- Work -->
-							<article id="work">
+						<!-- Motion Model -->
+							<article id="motion">
 								<h2 class="major">Motion Model</h2>
 								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-								<p>Adipiscing magna sed dolor elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices.</p>
+								<p>
+
+									For our proof of concept, we focused on analysis of the accelerometer data.
+									In order to test our analysis, we set up the accelerometer on a smartphone to stream data to a computer for analysis.
+									We conducted experiments by having multiple users conduct at various tempos (60 - 140 BPM) and at two different time signatures (4/4 and 6/8).
+									From that, we analyzed the data for our parameters of interest:</p>
 								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
 							</article>
 
-						<!-- About -->
-							<article id="about">
-								<h2 class="major">Signal Processing</h2>
+						<!-- Algorithms -->
+							<article id="algorithms">
+								<h2 class="major">Algorithms</h2>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
 								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
 							</article>
 
-						<!-- Contact -->
-							<article id="contact">
+						<!-- Results -->
+							<article id="results">
 								<h2 class="major">Results</h2>
 								<form method="post" action="#">
 									<div class="fields">
@@ -344,7 +365,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						<p class="copyright">&copy; ConductorViewer. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
 			</div>
