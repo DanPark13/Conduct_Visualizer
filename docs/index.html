@@ -66,57 +66,85 @@
 								</ul>
 								<p>Using these parameters based on the sensor data, the device transmits feedback to the conductor so they know what they are doing,
 									and improving themselves to help lead the musicians playing in the orchestra.</p>
+								<h3 class="major">Citations</h3>
+								<p>Dirican, Ahmet Cengizhan, and Selim Aksoy. 
+									“Step Counting Using Smartphone Accelerometer and Fast Fourier Transform.” 
+									Sigma Journal of Engineering and Natural Scienceswww, vol. 8, no. 2, 2017, pp. 175-182. 
+									Sigma Journal of Engineering and Natural Sciences, https://sigma.yildiz.edu.tr/article/538.</p>
+								<p>McElheran, Brock. Conducting technique: for beginners and professionals. Oxford University Press, 1989.</p>
+								<p>Zijlstra, Wiebren, and At L. Hof. 
+									“Assessment of spatio-temporal gait parameters from trunk accelerations during human walking.”
+									 Gait & Posture, vol. 18, no. 2, 2003, pp. 1-10. Science Direct, 
+									 https://doi.org/10.1016/S0966-6362(02)00190-X.</p>
+								<p>Tow, Emily, et al. “Mini-Project: Passive Solar Houses.” Qualitative Engineering Analysis III</p>
 							</article>
 
 						<!-- Motion Model -->
 							<article id="motion">
 								<h2 class="major">Motion Model</h2>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
 								<p>
-
 									For our proof of concept, we focused on analysis of the accelerometer data.
 									In order to test our analysis, we set up the accelerometer on a smartphone to stream data to a computer for analysis.
-									We conducted experiments by having multiple users conduct at various tempos (60 - 140 BPM) and at two different time signatures (4/4 and 6/8).
-									From that, we analyzed the data for our parameters of interest:</p>
-								<p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus pharetra. Pellentesque condimentum sem. In efficitur ligula tate urna. Maecenas laoreet massa vel lacinia pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis libero. Mauris aliquet magna magna sed nunc rhoncus amet feugiat tempus.</p>
+									We conducted experiments by having multiple users conduct at various tempos (60 - 140 BPM) and at two different time signatures (2/4 and 4/4).</p>
+								<h3>Data Collection</h3>
+								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+								<p>The experimental setup for the ConductorViewer is shown above, 
+									where smartphone is attached to the top of the hand screen side up, with the camera towards the wrist.
+									This location was deliberately chosen for the phone as it allows us to focus on the motions that define 
+								a conductor's motion.</p>
+								<p>The phone collects the output on the x, y, and z axes of the accelerometer, as well as the current time,
+									and sent to the computer for analysis using MATLAB.
+								</p>
+								<p>In order to determine the current tempo of the music, 
+									we analyze the accelerometer data by applying a Fourier Transform, a method we used to find the frequencies that the system 
+									is undergoing. decomposes a signal into the frequencies that make it up. 
+									The main idea behind the Fourier Transform is that any continuous signal in the time domain 
+									can be represented by an infinite series of sinusoidal waves, 
+									which was beneficial in our project for identifying the tempos within each recorded data segment.
+								</p>
+							</p>Shown below are the axes of 140 BPM at a 4/4 time signature. We see the highest frequency in the Z axis is at 140, the BPM of the measured data. 
+								<span class="image main"><img src="images/fourier_transform_data_4_4_140.png" alt="" /></span>
 							</article>
 
 						<!-- Algorithms -->
 							<article id="algorithms">
 								<h2 class="major">Algorithms</h2>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>Lorem ipsum dolor sit amet, consectetur et adipiscing elit. Praesent eleifend dignissim arcu, at eleifend sapien imperdiet ac. Aliquam erat volutpat. Praesent urna nisi, fringila lorem et vehicula lacinia quam. Integer sollicitudin mauris nec lorem luctus ultrices. Aliquam libero et malesuada fames ac ante ipsum primis in faucibus. Cras viverra ligula sit amet ex mollis mattis lorem ipsum dolor sit amet.</p>
+								<p>The algorithm first takes in the acceleration data in the x, y, and z direction, 
+									and for each of the x, y, and z axes, orders it around the line x = 0. 
+									Next, the algorithm splits the received conducting data into several chunks
+									for each of the x, y, and z axes. The highest frequencies from each section are extracted and are compared to each other.
+									From this we can analyze the consistency rate of the conducting as well as average the overall tempos to get the tempo marking for the section.</p>
+								<p>The Full Repistory with all the Code for the ConductorViewer can be viewed <a href="https://github.com/DanPark13/Conduct_Visualizer" target="_blank">here.</a></p>
 							</article>
 
 						<!-- Results -->
 							<article id="results">
 								<h2 class="major">Results</h2>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-								</form>
-								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-								</ul>
+								<h3>Proof of Concept</h3>
+								<h3>Next Steps</h3>
+								<p>With our current state, we are able to identify tempos and accuracy rates of the person conducting.
+									However, there are some segments that can be improved on, or additional capabilities of the program.
+								</p>
+								<h4>Time Signature Analysis</h4>
+								<p>When originally scoping out our project, we planned on including the program to be able to detect different
+									time signatures from the conducting. However, it wasn't able to be accomplished due to scope
+									and instead focused on giving the conductors accuracy rates on their conducting.
+									In the next steps, we will add that component so conductors are able to analyze whether or not they are conducting in
+									the correct time signature they are meant to play.
+								</p>
+								<h4>Volume Analysis</h4>
+								<p>
+									The volume analysis component would be another addition to our product to analyze how loud the conductor
+									is indicating when they are conducting. This is a crucial part in musical orchestras as conductors give
+									dynamics instructions that musicians need to pick up well if they want to give more brilliance in the piece. 
+								</p>
+								<h4>Real Time Analysis</h4>
+								<p>
+									As of right now, we can only analyze data as we record it in a chunk and upload that the MATLAB for analysis.
+									However, we will eventually want our product to have real time analysis so conductors can see their conducting
+									and what the algorithm reads in real time.
+								</p>
 							</article>
 
 						<!-- Elements -->
