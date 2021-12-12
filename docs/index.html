@@ -85,20 +85,23 @@
 									For our proof of concept, we focused on analysis of the accelerometer data.
 									In order to test our analysis, we set up the accelerometer on a smartphone to stream data to a computer for analysis.
 									We conducted experiments by having multiple users conduct at various tempos (60 - 140 BPM) and at two different time signatures (2/4 and 4/4).</p>
-								<h3>Data Collection</h3>
 								<p>In order to determine the tempo of the conducting, we analyze the accelerometer data to determine
 									the most prominent frequencies of movement. We used the directional axises of the accelerometer of the phone, as shown below.
 								</p>
 								<span class="image main"><img src="images/phone_axis.png" alt="" /></span>
-								<p>Using these axises, we determined that we should focus on the X and Z axes of the accelerometer. 
-									With the experimental setup for the ConductorViewer is shown below, 
-									where smartphone is attached to the top of the hand screen side up, with the camera towards the wrist.
-									This location was deliberately chosen for the phone as it allows us to focus on the motions that define 
-								a conductor's motion.</p>
+								<p>The location of the phone on the person's wrist was deliberately chosen for the phone as it allows us to focus on the motions that define
+									their motion.
+									Using these axises, we determined that we should focus on the X and Z axes of the accelerometer based on the movement when conducting.
+									When the phone accelerometer is oriented as shown below, we see this movement causes acceleration in the X direction (horizontal) and Z direction (vertical)
+									when conducting in a normal pattern.
+									where smartphone is attached to the top of the hand screen side up, with the camera towards the wrist.</p>
 								<span class="image main"><img src="images/onhandaxis.png" alt="" /></span>
-								<p>The phone collects the output on the x, y, and z axes of the accelerometer, as well as the current time,
-									and sent to the computer for analysis using MATLAB.
+								<p>The phone collects the output on the X and Z axes of the accelerometer, as well as the current time associated with the data received,
+									and sent to the computer for analysis using MATLAB. Because most conducting patterns involve one up/down motion per beat, we could determine that the acceleration in the z-direction
+									should be roughly periodic with a period of one beat. Based on this, we can take the Fourier Transform of the Y-direction data and
+									extract the most prominent frequency.
 								</p>
+								<span class="image main"><img src="images/sidewaysphoneplacement.png" alt="" /></span>
 							</article>
 
 						<!-- Algorithm -->
