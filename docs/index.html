@@ -55,7 +55,7 @@
 									and based on what information our product gives them, they can learn and improve themselves to fix their mistakes efficiently and perform flawlessly on stage.
 								</p>
 								<h3 class="major">How it Works</h3>
-								<span class="image main"><img src="images/pic01.jpg" alt="" /></span>
+								<span class="image main"><img src="images/onhandaxis.png" alt="" /></span>
 								<p>ConductorViewer uses a single sensing device, such as a smartphone, attached to a person's wrist.
 									The accelerometer on the sensing device reads the movement of the conductor and give feedback on two parameters:
 								</p>
@@ -95,13 +95,12 @@
 									When the phone accelerometer is oriented as shown below, we see this movement causes acceleration in the X direction (horizontal) and Z direction (vertical)
 									when conducting in a normal pattern.
 									where smartphone is attached to the top of the hand screen side up, with the camera towards the wrist.</p>
-								<span class="image main"><img src="images/onhandaxis.png" alt="" /></span>
+								<span class="image main"><img src="images/sidewaysphoneplacement.png" alt="" /></span>
 								<p>The phone collects the output on the X and Z axes of the accelerometer, as well as the current time associated with the data received,
 									and sent to the computer for analysis using MATLAB. Because most conducting patterns involve one up/down motion per beat, we could determine that the acceleration in the z-direction
 									should be roughly periodic with a period of one beat. Based on this, we can take the Fourier Transform of the Y-direction data and
 									extract the most prominent frequency.
 								</p>
-								<span class="image main"><img src="images/sidewaysphoneplacement.png" alt="" /></span>
 							</article>
 
 						<!-- Algorithm -->
@@ -143,6 +142,13 @@
 								<h3>Next Steps</h3>
 								<p>With our current state, we are able to identify tempos and accuracy rates of the person conducting.
 									However, there are some segments that can be improved on, or additional capabilities of the program.
+								</p>
+								<h4>Consistency Score Improvements</h4>
+								<p>As of now, we calculate our consistency score by seperating the data into chunks and analyzing the average tempo of each chunk.
+									With tempos from each chunk, the program calculated a consistency score by finding the percent error as well as the standard deviation over time.
+									However, this method gives the conductor a large room for error, something that cannot be said for a real life orchestra.
+									Therefore, we plan on improving our analysis by accomplishing this in the frequency domain based on the FFT of the entire length of the data
+									rather than chunks to give the user a more accurate report on their conducting.
 								</p>
 								<h4>Time Signature Analysis</h4>
 								<p>When originally scoping out our project, we planned on including the program to be able to detect different
