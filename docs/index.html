@@ -17,7 +17,6 @@
 
 		<!-- Wrapper -->
 			<div id="wrapper">
-
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
@@ -52,7 +51,7 @@
 									and worse, if they are doing it correctly.
 								</p>
 								<p>
-									What we aim to achieve with ConductorViewer is to remove the doubt conductors have when they conduct, and allow them to receive feedback on how well they are doing,
+									What we aim to achieve with ConductorViewer is to remove the doubt conductors have when they conduct, and allow them to receive feedback on how well they are conducting,
 									and based on what information our product gives them, they can learn and improve themselves to fix their mistakes efficiently and perform flawlessly on stage.
 								</p>
 								<h3 class="major">How it Works</h3>
@@ -87,20 +86,13 @@
 									In order to test our analysis, we set up the accelerometer on a smartphone to stream data to a computer for analysis.
 									We conducted experiments by having multiple users conduct at various tempos (60 - 140 BPM) and at two different time signatures (2/4 and 4/4).</p>
 								<h3>Data Collection</h3>
-								<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
+								<span class="image main"><img src="images/phone_axis.png" alt="" /></span>
 								<p>The experimental setup for the ConductorViewer is shown above, 
 									where smartphone is attached to the top of the hand screen side up, with the camera towards the wrist.
 									This location was deliberately chosen for the phone as it allows us to focus on the motions that define 
 								a conductor's motion.</p>
 								<p>The phone collects the output on the x, y, and z axes of the accelerometer, as well as the current time,
 									and sent to the computer for analysis using MATLAB.
-								</p>
-								<p>In order to determine the current tempo of the music, 
-									we analyze the accelerometer data by applying a Fourier Transform, a method we used to find the frequencies that the system 
-									is undergoing. decomposes a signal into the frequencies that make it up. 
-									The main idea behind the Fourier Transform is that any continuous signal in the time domain 
-									can be represented by an infinite series of sinusoidal waves, 
-									which was beneficial in our project for identifying the tempos within each recorded data segment.
 								</p>
 							</p>Shown below are the axes of 140 BPM at a 4/4 time signature. We see the highest frequency in the Z axis is at 140, the BPM of the measured data. 
 								<span class="image main"><img src="images/fourier_transform_data_4_4_140.png" alt="" /></span>
@@ -115,6 +107,20 @@
 									Next, the algorithm splits the received conducting data into several chunks
 									for each of the x, y, and z axes. The highest frequencies from each section are extracted and are compared to each other.
 									From this we can analyze the consistency rate of the conducting as well as average the overall tempos to get the tempo marking for the section.</p>
+								<h3>Fourier Transforms</h3>
+								<p><p>In order to determine the current tempo of the music, 
+									we analyze the accelerometer data by applying a Fourier Transform, a method we used to find the frequencies that the system 
+									is undergoing. decomposes a signal into the frequencies that make it up. 
+									The main idea behind the Fourier Transform is that any continuous signal in the time domain 
+									can be represented by an infinite series of sinusoidal waves, 
+									which was beneficial in our project for identifying the tempos within each recorded data segment.
+								</p>
+								<h3>Peak Detection</h3>
+								<p>Our peak detection algorithm was a very important piece in this application 
+									because it allowed us to detect how many distinct frequencies would appear 
+									when a signal was transformed using the Fourier transform. 
+									This allowed us to generate an integer to get us the tempo of a section of the recording
+									in addition to finding the consistency score of the piece.</p>
 								<p>The Full Repistory with all the Code for the ConductorViewer can be viewed <a href="https://github.com/DanPark13/Conduct_Visualizer" target="_blank">here.</a></p>
 							</article>
 
