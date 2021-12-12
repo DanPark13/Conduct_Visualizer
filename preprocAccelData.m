@@ -1,6 +1,6 @@
 function [accelData, Fs] = preprocAccelData(accelData, cutoffs)
-%preprocAccelData Summary of this function goes here
-%   Detailed explanation goes here
+%preprocAccelData Remove the first and last x seconds of accelerometer
+%   data, mean center it, and convert it from a timetable to a matrix.
     arguments
         accelData (:, 3) timetable;
         cutoffs (1,2) {mustBeNumeric} = [0,0];
