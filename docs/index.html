@@ -82,24 +82,19 @@
 							<article id="motion">
 								<h2 class="major">Motion Model</h2>
 								<p>
-									For our proof of concept, we focused on analysis of the accelerometer data.
-									In order to test our analysis, we set up the accelerometer on a smartphone to stream data to a computer for analysis.
-									We conducted experiments by having multiple users conduct at various tempos (60 - 140 BPM) and at two different time signatures (2/4 and 4/4).</p>
-								<p>In order to determine the tempo of the conducting, we analyze the accelerometer data to determine
-									the most prominent frequencies of movement. We used the directional axises of the accelerometer of the phone, as shown below.
+									For our proof of concept, we focused on accelerometer data from a smartphone.
+									The phone collects the output on the X, Y, and Z axes of the accelerometer, as well as the current time associated with each data point received.
+									We can use the data we received and send it over to the computer for analysis using MATLAB, 
+									where we can determine the most prominent frequencies of movement
+									by focusing on the directional axes of the accelerometer, as seen in the image below.
 								</p>
 								<span class="image main"><img src="images/phone_axis.png" alt="" /></span>
-								<p>The location of the phone on the person's wrist was deliberately chosen for the phone as it allows us to focus on the motions that define
-									their motion.
-									Using these axises, we determined that we should focus on the X and Z axes of the accelerometer based on the movement when conducting.
-									When the phone accelerometer is oriented as shown below, we see this movement causes acceleration in the X direction (horizontal) and Z direction (vertical)
-									when conducting in a normal pattern.
-									where smartphone is attached to the top of the hand screen side up, with the camera towards the wrist.</p>
+								<p>In order to determine the tempo of the conducting, we must determine the most prominent frequencies of movement from the analyzed data.
+									By placing the phone on the user's wrist as shown below, we can use the directional axises to focus on the user's motion in the X, Y, and Z directions.
+								</p>
 								<span class="image main"><img src="images/sidewaysphoneplacement.png" alt="" /></span>
-								<p>The phone collects the output on the X and Z axes of the accelerometer, as well as the current time associated with the data received,
-									and sent to the computer for analysis using MATLAB. Because most conducting patterns involve one up/down motion per beat, we could determine that the acceleration in the z-direction
-									should be roughly periodic with a period of one beat. Based on this, we can take the Fourier Transform of the Y-direction data and
-									extract the most prominent frequency.
+								<p>When conducting, we recognize that most conducting patterns involve on up/down motion per beat, knowing that the acceleration of motion
+									should be roughly periodic with a period of one beat. We analyzed two conducting patterns of a 2/4 time signature and 4/4 time signature, as shown below respectively.
 								</p>
 								<span class="image main"><img src="images/24_time_signature.PNG" alt="" /></span>
 								<p>
