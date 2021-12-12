@@ -101,6 +101,14 @@
 									should be roughly periodic with a period of one beat. Based on this, we can take the Fourier Transform of the Y-direction data and
 									extract the most prominent frequency.
 								</p>
+								<span class="image main"><img src="images/24_time_signature.PNG" alt="" /></span>
+								<p>
+									In the picture above, you can see the motion for 2/4 time signature. 
+								</p>
+								<span class="image main"><img src="images/44_time_signature.PNG" alt="" /></span>
+								<p>
+									In the picture above, you can see the motion for 4/4 time signature. 
+								</p>
 							</article>
 
 						<!-- Algorithm -->
@@ -108,7 +116,7 @@
 								<h2 class="major">Algorithms</h2>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
 								<h3>Pre-Processing</h3>
-								<!--Check to see if any filters and where. Explain why there are peaks at 0.5 and 1.5 for 2/4 signatures --->
+								<!--Explain why there are peaks at 0.5 and 1.5 for 2/4 signatures --->
 								<p>First we created a MATLAB structure array to store all the data we collected for easier manipulation. We cut off the first and last 2 seconds 
 									so as to only capture the conducting motion. For each experiment, we have acceleration data in the x, y, and z direction. The algorithm splits
 									the received conducting data into several chunks. FFT is then used on each segment on
