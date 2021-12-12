@@ -104,6 +104,7 @@
 									motion of the the piece. For example, for a 2/4 time signature, we should see a peak at half the frequency in the z axis because there are two downward strokes for one beat.
 									You can see that as you go from 1 to 2, there would be a downard acceleration as you move down the loop.
 								</p>
+								<p>So from these conducting patterns, we can predict that these are the frequencies we should expect from the motion.</p>
 							</article>
 
 						<!-- Algorithm -->
@@ -112,22 +113,26 @@
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
 								<h3>Pre-Processing</h3>
 								<!--Explain why there are peaks at 0.5 and 1.5 for 2/4 signatures --->
-								<p>First we created a MATLAB structure array to store all the data we collected for easier manipulation. We cut off the first and last 2 seconds 
-									so as to only capture the conducting motion. For each experiment, we have acceleration data in the x, y, and z direction. The algorithm splits
-									the received conducting data into several chunks. FFT is then used on each segment on
-									all axes to convert from the time domain to the frequency domain. We found using the axis with the highest magnitude in frequencies were the 
+								<p>Our data consists of two sets of data with a 2/4 time signature and 4/4 time signature at five different tempos each (60BPM - 140BPM).
+									Before processing our data through the Fourier Transfrom, we first created a MATLAB structure array to store all the data we collected for easier manipulation. 
+									We cut off the first and last 2 seconds so as to only capture the conducting motion. For each experiment, we have acceleration data in the x, y, and z direction. The algorithm splits
+									the received conducting data into several chunks for later consistency score calculations.
+								</p>
+								<h3>Fourier Transforms</h3>
+								<p><p>In order to determine the current tempo of the music, 
+									we analyze the accelerometer data by applying a Fourier Transform, a method we used to find the frequencies that the system 
+									is undergoing and decomposes a signal into the frequencies that make it up. 
+									The main idea behind the Fourier Transform is that any continuous signal in the time domain 
+									can be represented by an infinite series of sinusoidal waves, 
+									which was beneficial in our project for identifying the tempos within each recorded data segment.
+								</p>
+								<p>
+									We used it on each segment on all axes to convert from the time domain to the frequency domain. We found using the axis with the highest magnitude in frequencies were the 
 									most clear to determine the tempo. Looking at the major axis, we noticed unqiue characteristics for 2/4 and 4/4 time signatures.
 									We found that for all 2/4 time signatures for all tempos, there were 3 big peaks, with the middle being the acutal tempo. The other peaks occur at
 									0.5 and 1.5 times the actual tempo due to the conducting motion for 2/4. For 4/4, there is only one big peak occuring at the tempo.
 									The tempos for each segment are found using the method explained above and are compared to each other.
-									From this we can analyze the consistency rate of the conducting as well as average the overall tempos to get the overall tempo.</p>
-								<h3>Fourier Transforms</h3>
-								<p><p>In order to determine the current tempo of the music, 
-									we analyze the accelerometer data by applying a Fourier Transform, a method we used to find the frequencies that the system 
-									is undergoing. decomposes a signal into the frequencies that make it up. 
-									The main idea behind the Fourier Transform is that any continuous signal in the time domain 
-									can be represented by an infinite series of sinusoidal waves, 
-									which was beneficial in our project for identifying the tempos within each recorded data segment.
+									From this we can analyze the consistency rate of the conducting as well as average the overall tempos to get the overall tempo.
 								</p>
 								<h3>Peak Detection</h3>
 								<p>Our peak detection algorithm was a very important piece in this application 

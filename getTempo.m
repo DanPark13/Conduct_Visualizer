@@ -1,4 +1,18 @@
 function tempo = getTempo(accelData, Fs)
+%getTempo Calculates the apparent tempo from a accelerometer data.
+%   This function works by performing the following steps:
+%   - apply an FFT to all axes of the data
+%   - separate the axis containing the largest magnitude - the large
+%   magnitude indicates the axis with the most significant motion, which is
+%   what we want to analyze.
+%   - remove negative bpm values from the results
+%   - find the peaks in the fft for the axis with the largest magnitude.
+%   the peaks must have a prominence of at least half of the maximum
+%   magnitude (this was determined experimentally to work well.)
+%   - if there is only one peak, that is the one indicating the tempo
+%   - if there are multiple peaks, the one with the highest BPM out of the
+%   two with the largest magnitude is the one indicating the tempo
+%
     arguments
         accelData (:, 4) {mustBeNumeric}
         Fs {mustBeNumeric} = 10;
@@ -23,5 +37,4 @@ function tempo = getTempo(accelData, Fs)
     else
         tempo = max(locs(end-1:end));
     end
-%     innerPulse = ?????;
 end
