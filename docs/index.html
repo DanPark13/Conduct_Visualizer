@@ -98,15 +98,21 @@
 								<span class="image main"><img src="images/fourier_transform_data_4_4_140.png" alt="" /></span>
 							</article>
 
-						<!-- Algorithms -->
+						<!-- Algorithm -->
 							<article id="algorithms">
 								<h2 class="major">Algorithms</h2>
 								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>The algorithm first takes in the acceleration data in the x, y, and z direction, 
-									and for each of the x, y, and z axes, orders it around the line x = 0. 
-									Next, the algorithm splits the received conducting data into several chunks
-									for each of the x, y, and z axes. The highest frequencies from each section are extracted and are compared to each other.
-									From this we can analyze the consistency rate of the conducting as well as average the overall tempos to get the tempo marking for the section.</p>
+								<h3>Pre-Processing</h3>
+								<! --- Check to see if any filters and where. Explain why there are peaks at 0.5 and 1.5 for 2/4 signatures --->
+								<p>First we created a MATLAB structure array to store all the data we collected for easier manipulation. We cut off the first and last 2 seconds 
+									so as to only capture the conducting motion. For each experiment, we have acceleration data in the x, y, and z direction. The algorithm splits
+									the received conducting data into several chunks. FFT is then used on each segment on
+									all axes to convert from the time domain to the frequency domain. We found using the axis with the highest magnitude in frequencies were the 
+									most clear to determine the tempo. Looking at the major axis, we noticed unqiue characteristics for 2/4 and 4/4 time signatures.
+									We found that for all 2/4 time signatures for all tempos, there were 3 big peaks, with the middle being the acutal tempo. The other peaks occur at
+									0.5 and 1.5 times the actual tempo due to the conducting motion for 2/4. For 4/4, there is only one big peak occuring at the tempo.
+									The tempos for each segment are found using the method explained above and are compared to each other.
+									From this we can analyze the consistency rate of the conducting as well as average the overall tempos to get the overall tempo.</p>
 								<h3>Fourier Transforms</h3>
 								<p><p>In order to determine the current tempo of the music, 
 									we analyze the accelerometer data by applying a Fourier Transform, a method we used to find the frequencies that the system 
