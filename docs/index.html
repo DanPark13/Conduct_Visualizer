@@ -75,7 +75,7 @@
 									“Assessment of spatio-temporal gait parameters from trunk accelerations during human walking.”
 									 Gait & Posture, vol. 18, no. 2, 2003, pp. 1-10. Science Direct, 
 									 https://doi.org/10.1016/S0966-6362(02)00190-X.</p>
-								<p>Tow, Emily, et al. “Mini-Project: Passive Solar Houses.” Qualitative Engineering Analysis III</p>
+								<p>Tow, Emily, et al. Qualitative Engineering Analysis III</p>
 							</article>
 
 						<!-- Motion Model -->
@@ -104,22 +104,20 @@
 									motion of the the piece. For example, for a 2/4 time signature, we should see a peak at half the frequency in the z axis because there are two downward strokes for one beat.
 									You can see that as you go from 1 to 2, there would be a downard acceleration as you move down the loop.
 								</p>
-								<p>So from these conducting patterns, we can predict that these are the frequencies we should expect from the motion.</p>
 							</article>
 
 						<!-- Algorithm -->
 							<article id="algorithms">
 								<h2 class="major">Algorithms</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
 								<h3>Pre-Processing</h3>
-								<!--Explain why there are peaks at 0.5 and 1.5 for 2/4 signatures --->
-								<p>Our data consists of two sets of data with a 2/4 time signature and 4/4 time signature at five different tempos each (60BPM - 140BPM).
+								<span class="image main"><img src="images/cutoff_mean_centered_data.png" alt="" /></span>
+								<p>Our data consists of two sets of data with a 2/4 time signature and 4/4 time signature at five different tempos each (60BPM - 140BPM) with acceleration data in the x, y, and z directions.
 									Before processing our data through the Fourier Transfrom, we first created a MATLAB structure array to store all the data we collected for easier manipulation. 
-									We cut off the first and last 2 seconds so as to only capture the conducting motion. For each experiment, we have acceleration data in the x, y, and z direction. The algorithm splits
-									the received conducting data into several chunks for later consistency score calculations.
+									We cut off the first and last 2 seconds so as to only capture the conducting motion and mean-centered the data to remove the gravity component in our data.
+									The algorithm splits the received conducting data into several chunks for later consistency score calculations.
 								</p>
 								<h3>Fourier Transforms</h3>
-								<p><p>In order to determine the current tempo of the music, 
+								<p>In order to determine the current tempo of the music, 
 									we analyze the accelerometer data by applying a Fourier Transform, a method we used to find the frequencies that the system 
 									is undergoing and decomposes a signal into the frequencies that make it up. 
 									The main idea behind the Fourier Transform is that any continuous signal in the time domain 
@@ -134,12 +132,29 @@
 									The tempos for each segment are found using the method explained above and are compared to each other.
 									From this we can analyze the consistency rate of the conducting as well as average the overall tempos to get the overall tempo.
 								</p>
-								<h3>Peak Detection</h3>
-								<p>Our peak detection algorithm was a very important piece in this application 
-									because it allowed us to detect how many distinct frequencies would appear 
-									when a signal was transformed using the Fourier transform. 
-									This allowed us to generate an integer to get us the tempo of a section of the recording
-									in addition to finding the consistency score of the piece.</p>
+								<h3>Tempo Calculations</h3>
+								<p>We are able to receive the tempos by applying an FFT to all axes of the data, next separating the axis containing the largest magnitude where the large
+									magnitude indicates the axis with the most significant motion, which is what we want to analyze.
+									Then, remove negative bpm values from the results and find the peaks in the fft for the axis with the largest magnitude.
+									The peaks must have a prominence of at least half of the maximum magnitude (this was determined experimentally to work well.)
+									If there is only one peak, that is the one indicating the tempo and if there are multiple peaks, the one with the highest BPM out of the
+									two with the largest magnitude is the one indicating the tempo</p>
+								<span class="image main"><img src="images/fourier_transformed_2_4.png" alt="" /></span>
+								<h3>Consistency Score Calculations</h3>
+								<p>With the our data going through the Fourier Transform, we can calculate the variation in tempo over time within a conducting data collection session.
+									The function essentially calculates the overall tempo for the data, and uses that to determine the size of a window to "slide" over the data.
+										The window length is the length of a specified number of beats in the
+										calculated overall tempo. The function then calculates the apparent
+										tempo for the a segment of the data with that length starting at
+										incrementing samples. e.g. with a window length of 10 samples, the
+										tempo is calculated for samples 1-10, 2-11, 3-12, 4-13, and so on. This
+										basically gives us the tempo over time.
+								</p>
+								<p>Below is the consistency score calculations with a consistent, accurate tempo followed by an inconsistent, inaccurate tempo.</p>
+								<span class="image main"><img src="images/apparent_tempo_accurate.png" alt="" /></span>
+								<span class="image main"><img src="images/console_apparent_tempo_accurate.png" alt="" /></span>
+								<span class="image main"><img src="images/apparent_tempo_inaccurate.png" alt="" /></span>
+								<span class="image main"><img src="images/console_apparent_tempo_inaccurate.png" alt="" /></span>
 								<p>The Full Repistory with all the Code for the ConductorViewer can be viewed <a href="https://github.com/DanPark13/Conduct_Visualizer" target="_blank">here.</a></p>
 							</article>
 
@@ -147,6 +162,13 @@
 							<article id="results">
 								<h2 class="major">Results</h2>
 								<h3>Proof of Concept</h3>
+								With our collected and transformed data, we are able to accurately identify tempos based on the received data, as shown below.
+								<span class="image main"><img src="images/accurate_tempo_calculation.png" alt="" /></span>
+								We are also able to calculate how accurate the conducting is based on a consistent tempo.
+								<span class="image main"><img src="images/apparent_tempo_accurate.png" alt="" /></span>
+								<span class="image main"><img src="images/console_apparent_tempo_accurate.png" alt="" /></span>
+								<span class="image main"><img src="images/apparent_tempo_inaccurate.png" alt="" /></span>
+								<span class="image main"><img src="images/console_apparent_tempo_inaccurate.png" alt="" /></span>
 								<h3>Next Steps</h3>
 								<p>With our current state, we are able to identify tempos and accuracy rates of the person conducting.
 									However, there are some segments that can be improved on, or additional capabilities of the program.
@@ -177,248 +199,6 @@
 									However, we will eventually want our product to have real time analysis so conductors can see their conducting
 									and what the algorithm reads in real time.
 								</p>
-							</article>
-
-						<!-- Elements -->
-							<article id="elements">
-								<h2 class="major">Elements</h2>
-
-								<section>
-									<h3 class="major">Text</h3>
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<h6>Heading Level 6</h6>
-									<hr />
-									<h4>Blockquote</h4>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h4>Preformatted</h4>
-									<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-								</section>
-
-								<section>
-									<h3 class="major">Lists</h3>
-
-									<h4>Unordered</h4>
-									<ul>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
-
-									<h4>Alternate</h4>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
-
-									<h4>Ordered</h4>
-									<ol>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis viverra.</li>
-										<li>Felis enim feugiat.</li>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis lorem.</li>
-										<li>Felis enim et feugiat.</li>
-									</ol>
-									<h4>Icons</h4>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-									</ul>
-
-									<h4>Actions</h4>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Table</h3>
-									<h4>Default</h4>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-
-									<h4>Alternate</h4>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</section>
-
-								<section>
-									<h3 class="major">Buttons</h3>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Primary</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button primary disabled">Disabled</span></li>
-										<li><span class="button disabled">Disabled</span></li>
-									</ul>
-								</section>
-
-								<section>
-									<h3 class="major">Form</h3>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="demo-name">Name</label>
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-											</div>
-											<div class="field half">
-												<label for="demo-email">Email</label>
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-											</div>
-											<div class="field">
-												<label for="demo-category">Category</label>
-												<select name="demo-category" id="demo-category">
-													<option value="">-</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
-												</select>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">Not a robot</label>
-											</div>
-											<div class="field">
-												<label for="demo-message">Message</label>
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</form>
-								</section>
-
 							</article>
 
 					</div>
