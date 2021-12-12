@@ -86,17 +86,19 @@
 									In order to test our analysis, we set up the accelerometer on a smartphone to stream data to a computer for analysis.
 									We conducted experiments by having multiple users conduct at various tempos (60 - 140 BPM) and at two different time signatures (2/4 and 4/4).</p>
 								<h3>Data Collection</h3>
+								<p>In order to determine the tempo of the conducting, we analyze the accelerometer data to determine
+									the most prominent frequencies of movement. We used the directional axises of the accelerometer of the phone, as shown below.
+								</p>
 								<span class="image main"><img src="images/phone_axis.png" alt="" /></span>
-								<p>The experimental setup for the ConductorViewer is shown above, 
+								<p>Using these axises, we determined that we should focus on the X and Z axes of the accelerometer. 
+									With the experimental setup for the ConductorViewer is shown below, 
 									where smartphone is attached to the top of the hand screen side up, with the camera towards the wrist.
 									This location was deliberately chosen for the phone as it allows us to focus on the motions that define 
 								a conductor's motion.</p>
+								<span class="image main"><img src="images/onhandaxis.png" alt="" /></span>
 								<p>The phone collects the output on the x, y, and z axes of the accelerometer, as well as the current time,
 									and sent to the computer for analysis using MATLAB.
 								</p>
-								<span class="image main"><img src="images/onhandaxis.png" alt="" /></span>
-							</p>Shown below are the axes of 140 BPM at a 4/4 time signature. We see the highest frequency in the Z axis is at 140, the BPM of the measured data. 
-								<span class="image main"><img src="images/fourier_transform_data_4_4_140.png" alt="" /></span>
 							</article>
 
 						<!-- Algorithm -->
