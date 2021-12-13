@@ -85,7 +85,8 @@
 								<h2 class="major">Motion Model</h2>
 								<p>
 									For our proof of concept, we focused on accelerometer data from a smartphone.
-									The phone collects the output on the X, Y, and Z axes of the accelerometer, as well as the current time associated with each data point received.
+									The phone collects the output on the X, Y, and Z axes of the accelerometer, as well as the current time associated with each data point received. We have three axes and rotations about each axis,
+									so we have 6 degrees of rotation.
 									We can use the data we received and send it over to the computer for analysis using MATLAB, 
 									where we can determine the most prominent frequencies of movement
 									by focusing on the directional axes of the accelerometer, as seen in the image below.
@@ -113,6 +114,7 @@
 								<h2 class="major">Algorithms</h2>
 								<h3>Pre-Processing</h3>
 								<span class="image main"><img src="images/cutoff_mean_centered_data.png" alt="" /></span>
+								<span class="image main"><img src="images/44_raw_accel.png" alt="" /></span>
 								<p>Our data consists of two sets of data with a 2/4 time signature and 4/4 time signature at five different tempos each (60BPM - 140BPM) with acceleration data in the x, y, and z directions.
 									Before processing our data through the Fourier Transfrom, we first created a MATLAB structure array to store all the data we collected for easier manipulation. 
 									We cut off the first and last 2 seconds so as to only capture the conducting motion and mean-centered the data to remove the gravity component in our data.
@@ -142,6 +144,7 @@
 									If there is only one peak, that is the one indicating the tempo and if there are multiple peaks, the one with the highest BPM out of the
 									two with the largest magnitude is the one indicating the tempo</p>
 								<span class="image main"><img src="images/fourier_transformed_2_4.png" alt="" /></span>
+								<span class="image main"><img src="images/44_fft.png" alt="" /></span>
 								<h3>Consistency Score Calculations</h3>
 								<p>With the our data going through the Fourier Transform, we can calculate the variation in tempo over time within a conducting data collection session.
 									The function essentially calculates the overall tempo for the data, and uses that to determine the size of a window to "slide" over the data.
