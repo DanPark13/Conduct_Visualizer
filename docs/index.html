@@ -51,13 +51,14 @@
 									and worse, if they are doing it correctly.
 								</p>
 								<p>
-									What we aim to achieve with ConductorViewer is to remove the doubt conductors have when they conduct, and allow them to receive feedback on how well they are conducting,
-									and based on what information our product gives them, they can learn and improve themselves to fix their mistakes efficiently and perform flawlessly on stage.
+									What we aim to achieve with ConductorViewer is to remove the doubt conductors have when they conduct, and allow them to receive feedback on how well they are conducting.
+									Our product can provide users with information such as the tempo they are playing at so that they can learn and fix
+									their mistakes efficiently and perform flawlessly on stage!
 								</p>
 								<h3 class="major">How it Works</h3>
 								<span class="image main"><img src="images/onhandaxis.png" alt="" /></span>
 								<p>ConductorViewer uses a single sensing device, such as a smartphone, attached to a person's wrist.
-									The accelerometer on the sensing device reads the movement of the conductor and give feedback on two parameters:
+									The accelerometer on the sensing device reads the movement of the conductor in all three axes, is put throught our software, and gives feedback on two parameters:
 								</p>
 								<ul>
 									<li>Tempo Readings</li>
@@ -90,19 +91,19 @@
 								</p>
 								<span class="image main"><img src="images/phone_axis.png" alt="" /></span>
 								<p>In order to determine the tempo of the conducting, we must determine the most prominent frequencies of movement from the analyzed data.
-									By placing the phone on the user's wrist as shown below, we can use the directional axises to focus on the user's motion in the X, Y, and Z directions.
+									By placing the phone on the user's wrist as shown below, we can use the directional axes to focus on the user's motion in the X, Y, and Z directions.
 								</p>
 								<span class="image main"><img src="images/sidewaysphoneplacement.png" alt="" /></span>
-								<p>When conducting, we recognize that most conducting patterns involve on up/down motion per beat, knowing that the acceleration of motion
+								<p>When conducting, we recognize that most conducting patterns involve an up/down motion per beat, knowing that the acceleration of motion
 									should be roughly periodic with a period of one beat. We analyzed two conducting patterns of a 2/4 time signature and 4/4 time signature, as shown below respectively.
 								</p>
 								<span class="image main"><img src="images/24_time_signature.PNG" alt="" /></span>
 								<span class="image main"><img src="images/44_time_signature.PNG" alt="" /></span>
 								<p>
 									In the pictures above, you can see the motion for 2/4 and 4/4 time signature. We should see a peak at the tempo the piece was conducted in. We expect this to be the most
-									apparant in the z axis (up and down) becuase we can clearly capture the downward stroke. In all the axes, we expect to see peaks that are multiples of the tempo due to
+									apparant in the z axis (up and down) becuase we can clearly capture the downward stroke without too much noise. In all the axes, we expect to see peaks that are multiples of the tempo due to
 									motion of the the piece. For example, for a 2/4 time signature, we should see a peak at half the frequency in the z axis because there are two downward strokes for one beat.
-									You can see that as you go from 1 to 2, there would be a downard acceleration as you move down the loop.
+									The first is the downward acceleration when moving down the loop towards position 2 and second downward acceleration at the end of the motion as the hand returns back to position 1.
 								</p>
 							</article>
 
@@ -151,8 +152,10 @@
 										basically gives us the tempo over time.
 								</p>
 								<p>Below is the consistency score calculations with a consistent, accurate tempo followed by an inconsistent, inaccurate tempo.</p>
+								<h5>Consistent Accurate Tempo</h5>
 								<span class="image main"><img src="images/apparent_tempo_accurate.png" alt="" /></span>
 								<span class="image main"><img src="images/console_apparent_tempo_accurate.png" alt="" /></span>
+								<h5>Inconsistent Inaccurate Tempo</h5>
 								<span class="image main"><img src="images/apparent_tempo_inaccurate.png" alt="" /></span>
 								<span class="image main"><img src="images/console_apparent_tempo_inaccurate.png" alt="" /></span>
 								<p>The full repository with all our code for ConductorViewer can be viewed <a href="https://github.com/DanPark13/Conduct_Visualizer" target="_blank">here.</a></p>
