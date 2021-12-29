@@ -1,6 +1,6 @@
-# ConductVisualizer
+#ConductVisualizer
 
-## Team: Aaron Huang, Daniel Park, Jacob Smilg
+##Team: Aaron Huang, Daniel Park, Jacob Smilg
 
 Access the Informational Website [Here](https://danpark13.github.io/Conduct_Visualizer/)
 
